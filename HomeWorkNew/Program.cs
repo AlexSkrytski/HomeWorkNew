@@ -58,7 +58,10 @@
                         Console.WriteLine($"Результат: {firstValue / secondValue}");
                     break;
                 case "%":
-                    Console.WriteLine($"Результат: {firstValue / secondValue * 100}%");
+                    if (secondValue == 0)
+                        Console.WriteLine("Ошибка: деление на 0");
+                    else
+                        Console.WriteLine($"Результат: {firstValue / secondValue * 100}%");
                     break;
                 default:
                     Console.WriteLine("Неизвестная операция");
