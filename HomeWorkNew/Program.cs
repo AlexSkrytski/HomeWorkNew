@@ -8,7 +8,7 @@
             GetAgeStatus();
             SalaryBYHours();
             SalaryByKpi();
-            IShop();
+            PrintOrderSummary();
         }
         public static void MiniCalcApp()
         {
@@ -19,7 +19,7 @@
             string inputFirstValue = Console.ReadLine() ?? string.Empty;
             bool resultFirstInput = decimal.TryParse(inputFirstValue, out decimal firstValue);
 
-            if (resultFirstInput == false)
+            if (!resultFirstInput)
             {
                 Console.WriteLine("Введено не число");
                 goto vvod1;
@@ -31,13 +31,13 @@
             string inputSecondValue = Console.ReadLine() ?? string.Empty;
             bool resultSecondInput = decimal.TryParse(inputSecondValue, out decimal secondValue);
 
-            if (resultSecondInput == false)
+            if (!resultSecondInput)
             {
                 Console.WriteLine("Введено не число");
                 goto vvod2;
             }
 
-            Console.Write("Выберите операцию (+, -, *, /): ");
+            Console.Write("Выберите операцию (+, -, *, /, %): ");
             string operationType = Console.ReadLine() ?? string.Empty;
 
             switch (operationType)
@@ -57,6 +57,9 @@
                     else
                         Console.WriteLine($"Результат: {firstValue / secondValue}");
                     break;
+                case "%":
+                    Console.WriteLine($"Результат: {firstValue / secondValue * 100}%");
+                    break;
                 default:
                     Console.WriteLine("Неизвестная операция");
                     break;
@@ -67,7 +70,7 @@
         {
 
             int parsedAge = 0;
-            bool notValidAge = true;
+            bool isAgeInvalid = true;
 
             do
             {
@@ -75,16 +78,16 @@
                 string ageInputValue = Console.ReadLine() ?? string.Empty;
                 bool parseResult = int.TryParse(ageInputValue, out int age);
 
-                if (parseResult == false || age > 100 || age < 1)
+                if (!parseResult || age > 100 || age < 1)
                 {
                     Console.WriteLine("Неверно, введите цифры от 1 до 100");
                 }
                 else
                 {
-                    notValidAge = false;
+                    isAgeInvalid = false;
                     parsedAge = age;
                 }
-            } while (notValidAge);
+            } while (isAgeInvalid);
 
             if (parsedAge >= 18)
             {
@@ -96,10 +99,8 @@
             }
 
         }
-
         public static void SalaryBYHours()
         {
-
             decimal dayHours = 100;
             decimal nightHours = 50;
             decimal dayRate = 50;
@@ -112,10 +113,10 @@
             decimal baseSalary = dayHours * dayRate + nightHours * nightRate;
             decimal totalHours = dayHours + nightHours;
 
-            if (totalHours > 160)
+            if (totalHours > 160)// 160 work hours limit
             {
-                decimal overHours = totalHours - 160;
-                gross = baseSalary + overHours * dayRate * 1.5M;
+                decimal overHours = totalHours - 160; // 160 work hours limit
+                gross = baseSalary + overHours * dayRate * 1.5M; //50% over for hours
             }
             else
             {
@@ -124,11 +125,11 @@
 
             if (weekendShift)
             {
-                bonus = baseSalary * 0.5M;
+                bonus = baseSalary * 0.5M; // add 50% for weekendShift
             }
 
             gross += bonus;
-            decimal net = gross * 0.9M;
+            decimal net = gross * 0.9M; // get tax 10%
 
             Console.WriteLine($"До налога: {gross}.");
             Console.WriteLine($"После налога: {net}.");
@@ -147,7 +148,6 @@
             }
 
         }
-
         public static void SalaryByKpi()
         {
 
@@ -156,14 +156,13 @@
             const decimal bonusFirstGrade = 0.1M;
             const int bonusSecondGrade = 20;
 
-
         vvod:
 
             Console.WriteLine("Введите начисленную зарплату");
             string salary = Console.ReadLine() ?? string.Empty;
             bool resultSalaryParse = decimal.TryParse(salary, out decimal salaryParsed);
 
-            if (resultSalaryParse == false)
+            if (!resultSalaryParse)
             {
                 Console.WriteLine("Неверное значение");
                 goto vvod;
@@ -175,7 +174,7 @@
             string kpi = Console.ReadLine() ?? string.Empty;
             bool resultKpiParse = decimal.TryParse(kpi, out decimal kpiParsed);
 
-            if (resultKpiParse == false)
+            if (!resultKpiParse)
             {
                 Console.WriteLine("Неверное значение KPI");
                 goto vvod2;
@@ -196,10 +195,10 @@
 
         }
 
-        public static void IShop()
+        public static void PrintOrderSummary()
         {
 
-            decimal amount = 10000; //Сумма заказа
+            decimal amount = 10000;
             bool isVip = false;
             bool isFirstOrder = false;
             bool hasPromo = true;
