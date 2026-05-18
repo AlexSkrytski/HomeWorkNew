@@ -89,7 +89,7 @@
                 }
             } while (isAgeInvalid);
 
-            if (parsedAge >= 18)
+            if (parsedAge >= 18) //18 years for adult
             {
                 Console.WriteLine("Человек совершеннолетний.");
             }
