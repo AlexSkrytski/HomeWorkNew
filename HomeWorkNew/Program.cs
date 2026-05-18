@@ -251,6 +251,7 @@
                     Console.WriteLine("Все скидки.");
                     break;
                 default:
+                    Console.WriteLine("Нет данных по скидкам.");
                     break;
             }
 
