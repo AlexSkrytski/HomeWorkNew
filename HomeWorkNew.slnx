@@ -1,4 +1,4 @@
 <Solution>
-  <Project Path="../LoginPassword/LoginPassword/LoginPasswordVerification.csproj" />
   <Project Path="HomeWorkNew/HomeWorkNew.csproj" />
+  <Project Path="LoginPasswordVerification()/HomeWork3.csproj" Id="35300032-f519-496a-8758-4af108cb6992" />
 </Solution>

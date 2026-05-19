@@ -4,8 +4,8 @@
     {
         static void Main()
         {
-            MiniCalcApp();
-            GetAgeStatus();
+          //  MiniCalcApp();
+           // GetAgeStatus();
             SalaryBYHours();
             SalaryByKpi();
             PrintOrderSummary();
